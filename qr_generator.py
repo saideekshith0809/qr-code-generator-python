@@ -1,6 +1,13 @@
 import qrcode
 
 def create_qr(data, filename="my_qr.png"):
+    if not data.strip():
+        print("❌ URL cannot be empty")
+        return
+
+    if not filename.endswith(".png"):
+        filename += ".png"
+
     qr = qrcode.QRCode(
         version=1,
         box_size=10,
@@ -18,4 +25,5 @@ def create_qr(data, filename="my_qr.png"):
 
 if __name__ == "__main__":
     url = input("Enter the URL: ")
-    create_qr(url)
+    filename = input("Enter output file name: ")
+    create_qr(url, filename)
